@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use app\models\UserAccount;
 
 class SignUpForm extends Model
 {
@@ -26,15 +27,13 @@ class SignUpForm extends Model
 
     public function saveSignUpForm()
     {
-        if ($this->validate()){
         $user_account = new UserAccount();
         $user_account->fullname = $this->fullname;
         $user_account->email = $this->email;
         $user_account->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
 
         return $user_account->save();
-        }
-        return false;
+        
     }
 }
 

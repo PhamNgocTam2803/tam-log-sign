@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\SignUpForm;
-use app\models\UserAccount;
+
 
 class SiteController extends Controller
 {
@@ -131,7 +131,7 @@ class SiteController extends Controller
     /**
      * Displays sign up page.
      */
-    public function actionSignUp()
+    public function actionSignup()
     {
         $model = new SignUpForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate())
