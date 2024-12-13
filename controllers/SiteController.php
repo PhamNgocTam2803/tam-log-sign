@@ -137,8 +137,9 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate())
         {
             if ($model->saveSignUpForm()){
-                Yii::$app->session->setFlash('success','Bạn đã đăng ký thành công');
-                return $this->refresh();
+
+                return $this-> redirect(['site/success']);
+                
             }else{
                 Yii::$app->session->setFlash('error','Đã xảy ra lỗi, bạn hãy thử lại');
             }
@@ -148,5 +149,10 @@ class SiteController extends Controller
             'model' => $model,
         ]);
 
+    }
+    /*Chuyển trang đến thông báo đăng kí thành công */
+    public function actionSuccess()
+    {
+        return $this -> render('success');
     }
 }
