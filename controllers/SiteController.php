@@ -74,12 +74,12 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['site/profile']);
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post()) && $model -> login()){
+            return $this->redirect(['site/profile']);
         }
 
         $model->password = '';
@@ -134,7 +134,7 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignUpForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate())
+        if ($model->load(Yii::$app->request->post()))
         {
             if ($model->saveSignUpForm()){
 
@@ -150,9 +150,27 @@ class SiteController extends Controller
         ]);
 
     }
-    /*Chuyển trang đến thông báo đăng kí thành công */
+    //Chuyển trang đến thông báo đăng kí thành công 
     public function actionSuccess()
     {
         return $this -> render('success');
     }
+
+
+    public function actionProfile()
+    {
+    // Kiểm tra nếu người dùng chưa đăng nhập, chuyển hướng về trang login
+    if (Yii::$app->user->isGuest) {
+        return $this->redirect(['site/login']);
+    }
+
+    // Lấy thông tin người dùng hiện tại
+    $user = Yii::$app->user->identity;
+
+    // Render view profile và truyền thông tin user
+    return $this->render('profile', [
+        'user' => $user,
+    ]);
+    }
+   
 }
