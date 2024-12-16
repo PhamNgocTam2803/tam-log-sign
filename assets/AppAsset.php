@@ -20,12 +20,12 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/output.css',
     ];
     public $js = [
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap5\BootstrapAsset'
+        // tắt boostrap để tránh xung đột với tailwind 'yii\bootstrap5\BootstrapAsset'
     ];
 }

@@ -13,6 +13,10 @@ $this->title = 'My Yii Application';
 
         <p><a class="btn btn-lg btn-success" href="https://www.yiiframework.com">Get started with Yii</a></p>
     </div>
+    <div class="bg-blue-500 text-white p-4 rounded-lg">
+    Test sử dụng Tailwind CSS có thành công hay chưa.
+    </div>
+
 
     <div class="body-content">
 
