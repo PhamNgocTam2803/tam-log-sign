@@ -50,7 +50,6 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
             if (!$user || !Yii::$app->getSecurity()->validatePassword($this->password, $user->password)) {
                 $this->addError($attribute, 'Incorrect email or password.');
             }
@@ -81,5 +80,6 @@ class LoginForm extends Model
         }
 
         return $this->_user;
+        
     }
 }
